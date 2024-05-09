@@ -21,6 +21,7 @@ with open('artifacts/model_2.pkl', 'rb') as f:
  
 #Initialise the Dash App
 app = dash.Dash(__name__)
+server = app.server
  
 #Define App Layout
 app.layout = html.Div([
