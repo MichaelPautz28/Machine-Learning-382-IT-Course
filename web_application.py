@@ -13,8 +13,14 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import pandas as pd
 import pickle
+import subprocess
 
+def install_module(module_name):
+    subprocess.check_call(["pip", "install", module_name])
  
+install_module('tensorflow')
+install_module('keras')
+
 # Load the model
 with open('artifacts/model_2.pkl', 'rb') as f:
     model = pickle.load(f)
