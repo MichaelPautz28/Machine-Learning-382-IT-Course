@@ -15,7 +15,7 @@ import pandas as pd
 import pickle
  
 # Load the model
-with open('Artifacts/model_2.pkl', 'rb') as f:
+with open('artifacts/model_2.pkl', 'rb') as f:
     model = pickle.load(f)
  
 #Initialise the Dash App
