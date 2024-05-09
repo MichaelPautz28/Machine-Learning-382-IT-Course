@@ -13,6 +13,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import pandas as pd
 import pickle
+import keras
  
 # Load the model
 with open('artifacts/model_2.pkl', 'rb') as f:
