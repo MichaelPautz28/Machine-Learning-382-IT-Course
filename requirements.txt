@@ -1,4 +1,9 @@
 dash==2.6.0
 pandas
 joblib
+sklearn
+tensorflow
+category_encoders
+skimpy
+numpy
 gunicorn
