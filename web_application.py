@@ -74,26 +74,28 @@ app.layout = html.Div(
         dcc.Slider(
             id='income-slider',
             min=0,
-            max=10000,
-            step=1000,
-            value=500,
-            marks={i: f'${i}' for i in range(0, 10001, 1000)}
+            max=50000,
+            step=100,
+            value=5000,
+            marks={i: f'${i}' for i in range(0, 50001, 5000)},
+            tooltip={"always_visible":True}
         ),
         html.Label("Coapplicant Income:"),
         dcc.Slider(
             id='coincome-slider',
             min=0,
-            max=5000,
-            step=500,
-            value=500,
-            marks={i: f'${i}' for i in range(0, 5001, 500)}
+            max=50000,
+            step=100,
+            value=1000,
+            marks={i: f'${i}' for i in range(0, 50001, 5000)},
+            tooltip={"always_visible":True}
         ),
         html.Label("Loan Amount:"),
         dcc.Slider(
             id='loan-slider',
             min=0,
             max=1000,
-            step=100,
+            step=10,
             value=100,
             marks={i: f'${i}' for i in range(0, 1001, 100)}
         ),
