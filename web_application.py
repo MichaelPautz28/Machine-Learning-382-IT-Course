@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# 
-# 
-
-# In[5]:
-
-
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
@@ -14,7 +5,10 @@ import pandas as pd
 import joblib
 
 model = joblib.load('./artifacts/model_1.pkl')
- 
+df = pd.read_csv('./artifacts/feature_importance.csv', index_col=0)
+
+features = df.index.tolist()
+importance = df.iloc[:, 0].tolist()
 #Initialise the Dash App
 app = dash.Dash(__name__)
 server = app.server
@@ -136,7 +130,8 @@ app.layout = html.Div(
             value='Rural'
         ),
         html.Button('Check Eligibility', id='submit-val', n_clicks=0),
-        html.Div(id='output')
+        html.Div(id='output'),
+        dcc.Graph(id='graph')
     ]
 )
  
@@ -181,8 +176,30 @@ def update_output(n_clicks, gender, married, dependents, education, self_employe
             return html.Div('Loan Approved', style={'color': 'green'})
         else:
             return html.Div('Loan Rejected', style={'color': 'red'})
- 
- 
+
+# Define callback to update the graph
+@app.callback(
+    Output('graph', 'figure'),
+    [Input('graph', 'id')]
+)
+def update_graph(_):
+    # Create horizontal bar graph
+    fig = {
+        'data': [
+            {
+                'x': importance,
+                'y': features,
+                'type': 'bar',
+                'orientation': 'h'
+            }
+        ],
+        'layout': {
+            'title': 'Feature Importance',
+            'xaxis': {'title': 'Importance'},
+            'yaxis': {'title': 'Feature'},
+        }
+    }
+    return fig
 #Run the App
 if __name__ == '__main__':
     app.run_server(port=8050, debug=True)
