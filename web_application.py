@@ -9,7 +9,6 @@
 
 import dash
 from dash import dcc, html
-import dash_html_components as html
 from dash.dependencies import Input, Output
 import pandas as pd
 import joblib
