@@ -183,4 +183,4 @@ def update_output(n_clicks, gender, married, dependents, education, self_employe
  
 #Run the App
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(port= 4001, debug=True)
